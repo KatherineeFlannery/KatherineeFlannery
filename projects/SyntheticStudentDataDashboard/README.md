@@ -8,6 +8,8 @@ To protect data privacy and FERPA compliance, this dashboard is made using fully
 This is a recreated student-data dashboard built for demonstration purposes. All data in this demo is synthetic and was generated using Faker (seed provided). No real student or personally identifiable information (PII) was used. 
 Each row represents one student record, a total of 110 student records were generated. 
 
+[Synthetic Data Code](https://github.com/KatherineeFlannery/KatherineeFlannery/blob/00daa574c16c73b0be8fb4a6a4bed95fc1a05fd8/projects%20/SyntheticStudentDataDashboard/SyntheticStudentData.ipynb)
+
 **Column Titles**
 
 The dataset contains the following columns: 
