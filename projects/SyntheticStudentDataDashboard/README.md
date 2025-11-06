@@ -40,3 +40,10 @@ After exporting the generated data into a CSV file, I imported it into Excel. I 
 
 Once I had all the data required, I looked for patterns using pivot tables and summary statistics. Finally, I used the pivot tables to create pivot charts for my dashboard. I then added slicers and linked them to the different pivot charts to make the dashboard interactive and look for insights to guide instruction. 
 
+[Excel Dashboard File](https://westerngovernorsuniversity-my.sharepoint.com/:x:/g/personal/kflann15_wgu_edu/EedKesSGG7FDvzB2_gyWm34BYpBI91fSWXe64SKmFH30SQ?e=KnZncn)
+
+**Dashboard Preview**
+
+![Student Performance Dashboard](Fall2024Performance.png)
+
+
