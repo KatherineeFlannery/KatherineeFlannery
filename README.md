@@ -13,11 +13,10 @@ I enjoy continuous learning, tackling complex problems, and collaborating with o
 
 ### Projects
 
-Google Data Analytics Capstone - Cyclistic Bikes
+**Austin 911 Police Dispatch Call Volume Prediction**
 
-For this project,  I analyzed data from casual riders and annual members to discover trends in how they use Cyclistic bikes differently to determine how to maximize annual memberships.  
+Developed a machine learning model to predict hourly Austin 911 police dispatch call volume using historical incident data from 2022-2025. This project transformed individual incident records into an hourly time series and used temporal features, cyclical encoding, and 24-hour and 168-hour lag features to capture recurring patterns in call volume. A Random Forest Regressor was trained using time-series cross-validation and compared against a mean-based Dummy Regressor. 
 
-Skills demonstrated: 
-  - Document SQL code to clean data set
-  - Data analysis
-  - Data Visualization
+**Result:** Reduced mean absolute error by 39%, from 10.48 to 6.37 calls per hour, with an R² of 0.58 on the held-out test data.
+
+**Skills:** Python · Pandas · NumPy · Scikit-learn · Time-Series Modeling · Feature Engineering · Random Forest · GridSearchCV · Data Visualization 
