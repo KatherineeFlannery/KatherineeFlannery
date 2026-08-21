@@ -88,7 +88,7 @@ The Random Forest's MAE of 6.37 means that, on average, it's predictions were ap
 
 **Feature Importance**
 
-<img width="630" height="470" alt="feature_importance" src="https://github.com/user-attachments/assets/5f756e27-6a53-4bc1-b476-a252e686d0a1" />
+<img width="420" height="313" alt="feature_importance" src="https://github.com/user-attachments/assets/5f756e27-6a53-4bc1-b476-a252e686d0a1" />
 
 The most influential features in the Random Forest model were:
 - 168-hour call-volume lag
@@ -104,14 +104,9 @@ The analysis found that the Random Forest substantially outperformed the mean-ba
 
 **Limitations**
 
-**Model**
+The Random Forest regression is bound by the range of the training data, meaning that the model will not predict beyond the minimum and maximum values in the training data. Additionally, the historical data may not capture unusual future call volumes.
 
-The Random Forest regression is bound by the range of the training data. 
-
-**Data**
-
-- The dataset does not include features that can influence the hourly call volume, such as weather or local events.
-- Historical data may not capture unusual future call volumes. 
+The analysis does not incorporate external factors that could influence call volume such as weather, local events, or location within the city. 
 
 **Business Implications**
 
@@ -138,5 +133,20 @@ Future improvements to the model could include:
 <img width="448" height="243" alt="benefits" src="https://github.com/user-attachments/assets/634d16f8-21f5-4250-981a-be0aee30e8ca" />
 
 **Technologies**
+
+**Programming and analysis**
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+
+**Machine Learning**
+- Scikit-learn
+- Random Forest Regression
+- Dummy Regression
+- GridSearchCV
+- TimeSeriesSplit
+
 
 
