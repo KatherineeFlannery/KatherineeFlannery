@@ -1,20 +1,22 @@
-**Project Overview**
+## Project Overview
 
 How accurately can machine learning predict hourly 911 police dispatch call volume?
 
-This project uses historical Austin Police Department Computer Aided Dispatch incident data to predict hourly police dispatch call volume using a Random Forest regression model. 
+This project uses historical Austin Police Department Computer Aided Dispatch incident data to predict hourly police dispatch call volume using a random forest regression model. 
 
-The goal was to determine whether temporal patterns and recent historical call volumes could provide useful predictions of future 911 demand. A Dummy Regressor was used as a baseline to determine whether the machine learning model provided meaningful improvement over a simple average-based prediction.
+The goal was to determine whether temporal patterns and recent historical call volumes could provide useful predictions of future 911 demand. A dummy regressor was used as a baseline to determine whether the machine learning model provided meaningful improvement over a simple average-based prediction.
 
-The final random forest regression model outperformed the baseline Dummy Regressor, reducing the mean absolute error from 10.48 calls per hour to 6.37 calls per hour and achieving an R2 of 0.58 on the held-out test set. 
+The final random forest regression model outperformed the baseline dummy regressor, reducing the mean absolute error from 10.48 calls per hour to 6.37 calls per hour and achieving an $R^2$ of 0.58 on the held-out test set. 
 
-**Business Problem**
+## Business Problem   
 
 911 call centers must balance staffing and emergency-response resources with changes in demand throughout the day and week.
 A model that can anticipate periods of higher call volume could potentially support staffing and resource-allocation decisions.
 This project focuses on police-dispatch incidents in Austin, Texas, using the four most recent complete years available for the analysis: 2022–2025.
 
-**Research Question:** To what extent can temporal and historical call-volume features predict 911 police dispatch hourly call volume using a Random Forest regression model?
+## Research Question: 
+
+To what extent can temporal and historical call-volume features predict 911 police dispatch hourly call volume using a Random Forest regression model?
 
 Random forest regression models combine predictions of multiple decision trees.
 
@@ -26,11 +28,11 @@ Dummy regressor models make simple predictions based on a strategy. For this ana
 
 This study hypothesizes that the random forest regressor model will outperform the dummy regressor by identifying trends in the historical data. 
 
-**Data**
+## Data 
 
 The project utilizes one publicly available dataset, APD Computer Aided Dispatch Incidents, provided by the City of Austin on the data.gov website. 
 
-The file includes historical incident-level data for 911 calls involving polic dispatch in the city of Austin in a CSV format. 
+The file includes historical incident-level data for 911 calls involving police dispatch in the city of Austin in a CSV format. 
 
 The original dataset contains:
 - 4,082,993 incident records
@@ -39,34 +41,33 @@ The original dataset contains:
 
 The analysis uses a subset of the last four full years, 2022-2025. The original incident-level records were aggregated into a continuous hourly time series. Hours with no calls were retained and assigned a call volume of zero.
 
-**Data Source**
+## Data Source
 
-https://catalog.data.gov/dataset/apd-computer-aided-dispatch-incidents
+[APD Computer Aided Dispatch Incidents](https://catalog.data.gov/dataset/apd-computer-aided-dispatch-incidents)
 
-**Exploratory Data Analysis**
+## Exploratory Data Analysis
 
 The hourly call volume averages approximately 43 calls per hour, with a maximum of 117 calls per hour. 
 
 The analysis identified several recurring patterns:
-- Call volume was generally lower during the early morning hours.
-- Afternoon and evening hours experienced higher average call volumes.
-- Friday had a higher average daily call volume than other weekdays.
+- Call volume was generally lower between the hours 3 a.m. and 6 a.m.
+- Between the hours of 3 p.m. and 11 p.m. the hourly call volume is highest, requiring more staff. 
 - Hourly call volume demonstrated a recurring 24-hour pattern.
 - High-volume periods were retained because these spikes represent meaningful demand that the model should learn to predict.
 
-**Average Call Volume by Hour**
-
 <img width="540" height="457" alt="callsperhour" src="https://github.com/user-attachments/assets/d27ed275-d7a3-4bd5-8884-adc835f9dad8" />
 
-**Feature Engineering**
+## Feature Engineering
 
 The following predictors were developed from the incident data:
+
+<img width="457" height="252" alt="variables_" src="https://github.com/user-attachments/assets/98bf2fe2-a245-4c9a-b144-fc1328d6eea4" />
 
 Cyclical variables were transformed using sine and cosine encoding so that the model could recognize the cyclical nature of variables such as hour, month, and day of week. 
 
 The 24-hour and 168-hour lag variables were included to capture recurring daily and weekly patterns. 
 
-**Modeling Approach**
+## Modeling Approach
 
 A Random Forest Regressor was selected as the primary model because it can capture nonlinear relationships and interactions between predictors. 
 
@@ -78,7 +79,7 @@ The training data is divided into 5 time-series splits that get longer with each
 
 The analysis utilizes GridSearchCV with the TimeSeriesSplit for hyperparameter tuning of the model. The GridSearchCV selects the best performing model using the negative mean squared error since GridSearchCV maximizes the scoring method and a lower mean squared error indicates better performance. 
 
-**Model Performance**
+## Model Performance
 
 The final model is evaluated on the unseen test data and compared against the dummy regressor model. 
 
@@ -86,7 +87,7 @@ The final model is evaluated on the unseen test data and compared against the du
 
 The Random Forest's MAE of 6.37 means that, on average, it's predictions were approximately 6.4 calls away from the actual call volume. Compared with the Dummy Regressor, the Random Forest reduced MAE by approximately 39%. The Random Forest also explained approximately 58% of the variance in the hourly call volume on the held-out test data. 
 
-**Feature Importance**
+## Feature Importance
 
 <img width="420" height="313" alt="feature_importance" src="https://github.com/user-attachments/assets/5f756e27-6a53-4bc1-b476-a252e686d0a1" />
 
@@ -98,55 +99,28 @@ The most influential features in the Random Forest model were:
 
 The importance of the lag variables suggests that recent historical call volume provides substantial information about future demand. The hour-based features also demonstrate the importance of recurring daily patterns. 
 
-**Key Findings**
-
-The analysis found that the Random Forest substantially outperformed the mean-based baseline. 
-
-**Limitations**
+## Limitations
 
 The Random Forest regression is bound by the range of the training data, meaning that the model will not predict beyond the minimum and maximum values in the training data. Additionally, the historical data may not capture unusual future call volumes.
 
 The analysis does not incorporate external factors that could influence call volume such as weather, local events, or location within the city. 
 
-**Business Implications**
+## Business Implications
 
 The results suggest that machine learning could potentially be used as a decision-support tool for anticipating periods of increased police-dispatch demand.
 
 A forecasting system could potentially help managers consider:
-
-Staffing levels
-Resource allocation
-Anticipated periods of higher demand
-Short-term operational planning
+- Staffing levels
+- Resource allocation
+- Anticipated periods of higher demand
+- Short-term operational planning
 
 The model should be considered a decision-support tool rather than a replacement for operational judgment.
 
-**Model Improvement**
+## Model Improvement
 
 Future improvements to the model could include:
 - Incorporating additional predictors such as weather or local events.
 - Modeling call volume by council district.
 - Comparing Random Forest with additional time-series models.
   
-**Expected Benefits**
-
-<img width="448" height="243" alt="benefits" src="https://github.com/user-attachments/assets/634d16f8-21f5-4250-981a-be0aee30e8ca" />
-
-**Technologies**
-
-**Programming and analysis**
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-
-**Machine Learning**
-- Scikit-learn
-- Random Forest Regression
-- Dummy Regression
-- GridSearchCV
-- TimeSeriesSplit
-
-
-
