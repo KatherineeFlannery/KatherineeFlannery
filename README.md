@@ -13,7 +13,7 @@ I enjoy continuous learning, tackling complex problems, and collaborating with o
 
 ### Projects
 
-**Austin 911 Police Dispatch Call Volume Prediction**
+[Austin 911 Police Dispatch Call Volume Prediction](https://github.com/KatherineeFlannery/KatherineeFlannery/tree/main/projects/Austin_911_Call_Volume)
 
 Developed a machine learning model to predict hourly Austin 911 police dispatch call volume using historical incident data from 2022-2025. This project transformed individual incident records into an hourly time series and used temporal features, cyclical encoding, and 24-hour and 168-hour lag features to capture recurring patterns in call volume. A Random Forest Regressor was trained using time-series cross-validation and compared against a mean-based Dummy Regressor. 
 
