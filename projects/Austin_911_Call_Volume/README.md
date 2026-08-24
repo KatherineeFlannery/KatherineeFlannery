@@ -1,3 +1,6 @@
+## Technologies 
+Python | pandas | NumPy | scikit-learn | matplotlib | seaborn | Jupyter
+
 ## Project Overview
 
 How accurately can machine learning predict hourly 911 police dispatch call volume?
@@ -30,16 +33,9 @@ This study hypothesizes that the random forest regressor model will outperform t
 
 ## Data 
 
-The project utilizes one publicly available dataset, APD Computer Aided Dispatch Incidents, provided by the City of Austin on the data.gov website. 
+The project utilizes one publicly available dataset, APD Computer Aided Dispatch Incidents, provided by the City of Austin on the data.gov website. The original file includes historical incident-level data for 911 calls involving police dispatch in the city of Austin which contains approximately 4.1 million records and 27 variables covering 2017 - June 2026. 
 
-The file includes historical incident-level data for 911 calls involving police dispatch in the city of Austin in a CSV format. 
-
-The original dataset contains:
-- 4,082,993 incident records
-- 27 variables
-- Historical records from 2017-June 2026
-
-The analysis uses a subset of the last four full years, 2022-2025. The original incident-level records were aggregated into a continuous hourly time series. Hours with no calls were retained and assigned a call volume of zero.
+The analysis uses a subset of the last four full years, 2022-2025, to focus on more recent call-volume patterns. The original incident-level records were aggregated into a continuous hourly time series. Hours with no calls were retained and assigned a call volume of zero.
 
 ## Data Source
 
@@ -71,7 +67,7 @@ The 24-hour and 168-hour lag variables were included to capture recurring daily 
 
 A Random Forest Regressor was selected as the primary model because it can capture nonlinear relationships and interactions between predictors. 
 
-The data is divided chronologically to ensure that the model is trained on earlier data and evaluated on later data which better reflects how the model will be used. The test size is set to 336 hours, which represents 2 full weeks to allow for staffing decisions to made in a timely fashion while limiting the length to maintain prediction accuracy. A gap of 24 is used to prevent data leakage.
+The data is divided chronologically to ensure that the model is trained on earlier data and evaluated on later data which better reflects how the model will be used. The final 336-hour test set represents two weeks of future demand, providing a meaningful evaluation window for short-term operational forecasting. A gap of 24 is used to prevent data leakage.
 
 <img width="474" height="213" alt="trainingsplit" src="https://github.com/user-attachments/assets/4b0c6721-5350-45bf-8b93-84c1706a1f75" />
 
@@ -85,7 +81,7 @@ The final model is evaluated on the unseen test data and compared against the du
 
 <img width="468" height="141" alt="performance" src="https://github.com/user-attachments/assets/5dcd6834-217a-4070-9a6a-7e6494931d28" />
 
-The Random Forest's MAE of 6.37 means that, on average, it's predictions were approximately 6.4 calls away from the actual call volume. Compared with the Dummy Regressor, the Random Forest reduced MAE by approximately 39%. The Random Forest also explained approximately 58% of the variance in the hourly call volume on the held-out test data. 
+The Random Forest's MAE of 6.37 means that, on average, its predictions were approximately 6.4 calls away from the actual call volume. Compared with the Dummy Regressor, the Random Forest reduced MAE by approximately 39%. The Random Forest also explained approximately 58% of the variance in the hourly call volume on the held-out test data. 
 
 ## Feature Importance
 
